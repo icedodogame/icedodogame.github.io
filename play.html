@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Play Game Online - Ice Dodo Games</title>
+  <meta name="description" content="Play free unblocked games online at Ice Dodo Games. Fullscreen browser game mode with controls guide.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230b1329'/><path d='M30 45 C30 25, 70 25, 70 45 C70 65, 55 75, 40 75 C30 75, 30 55, 30 45 Z' fill='%2300f2fe'/><ellipse cx='42' cy='42' rx='5' ry='6' fill='%23081026'/><ellipse cx='43' cy='40' rx='2' ry='2' fill='%23ffffff'/><polygon points='45,45 68,52 48,58' fill='%23ff9900'/><polygon points='22,48 35,40 33,56' fill='%2338ef7d'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="play.css">
+</head>
+<body class="play-page-body">
+
+  <!-- Top Navbar for Player Page -->
+  <header class="navbar player-navbar">
+    <div class="nav-container player-nav-container">
+      
+      <div class="player-nav-left">
+        <!-- Back to Home Button -->
+        <a href="index.html" class="btn-back-home" title="Return to Games Catalog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>All Games</span>
+        </a>
+
+        <!-- Brand Logo -->
+        <a href="index.html" class="brand-logo">
+          <div class="logo-icon-wrapper">
+            <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="26" fill="url(#logo-grad-play)"/>
+              <path d="M28 48C28 30 68 28 72 46C74 56 64 74 46 74C32 74 28 62 28 48Z" fill="#E0F7FF"/>
+              <circle cx="60" cy="42" r="5" fill="#0F172A"/>
+              <circle cx="61.5" cy="40.5" r="1.5" fill="#FFFFFF"/>
+              <path d="M68 46L86 52L68 59Z" fill="#FF9E00"/>
+              <path d="M38 28L44 14L50 26L58 12L62 27" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="logo-grad-play" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0284C7"/>
+                  <stop offset="1" stop-color="#0369A1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="logo-frost-glow"></div>
+          </div>
+          <span class="brand-name">IceDodo<span class="brand-highlight">Games</span></span>
+        </a>
+      </div>
+
+      <!-- Quick Switcher / Search in Player -->
+      <div class="player-nav-right">
+        <div class="search-container player-search">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="playerSearchInput" placeholder="Quick find game..." autocomplete="off">
+          <div class="quick-search-dropdown" id="searchDropdown" style="display: none;"></div>
+        </div>
+
+        <button class="nav-icon-btn" id="favToggleBtn" title="Add to Favorites">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-icon-btn" id="shareGameBtn" title="Share Game Link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Player Workspace -->
+  <main class="player-main-layout">
+    <div class="player-container">
+
+      <!-- Breadcrumbs -->
+      <nav class="player-breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="crumb-sep">/</span>
+        <a href="category/runners/" id="crumbCategoryLink"><span id="crumbCategory">3D Runners</span></a>
+        <span class="crumb-sep">/</span>
+        <span id="crumbGameTitle" class="current">Ice Dodo</span>
+      </nav>
+
+      <!-- Main Game Arena Stage -->
+      <div class="game-arena-card" id="gameArenaCard">
+        
+        <!-- Game Screen Iframe Wrapper -->
+        <div class="game-viewport" id="gameViewport">
+          
+          <!-- Loading State Overlay -->
+          <div class="player-loader" id="playerLoader">
+            <div class="loading-spinner"></div>
+            <div class="loader-text-group">
+              <h3 id="loaderGameTitle">Loading Ice Dodo...</h3>
+              <p>Preparing the best unblocked game experience</p>
+            </div>
+          </div>
+
+          <iframe 
+            id="mainGameIframe" 
+            src="" 
+            frameborder="0" 
+            allowfullscreen 
+            allow="autoplay; fullscreen; keyboard"
+            title="Game Screen">
+          </iframe>
+        </div>
+
+        <!-- Action Control Bar below Screen -->
+        <div class="game-arena-toolbar">
+          <div class="toolbar-game-meta">
+            <div class="toolbar-title-wrap">
+              <h1 class="toolbar-game-title" id="arenaGameTitle">Ice Dodo</h1>
+              <span class="card-badge badge-featured" id="arenaBadge">Featured</span>
+            </div>
+            <div class="toolbar-sub-meta">
+              <span class="meta-dev" id="arenaDeveloper">By Onionfist</span> &bull;
+              <span class="meta-rating" id="arenaRating">★ 4.9 (3.2M Plays)</span>
+            </div>
+          </div>
+
+          <!-- Utility Control Buttons -->
+          <div class="toolbar-actions">
+            
+            <button class="tool-btn" id="reloadGameBtn" title="Reload Game">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Restart</span>
+            </button>
+
+            <button class="tool-btn" id="theatreToggleBtn" title="Toggle Theatre Mode">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <line x1="2" y1="9" x2="22" y2="9"></line>
+              </svg>
+              <span>Theatre</span>
+            </button>
+
+            <button class="tool-btn btn-primary-fullscreen" id="fullscreenBtn" title="Play Fullscreen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+              </svg>
+              <span>Fullscreen</span>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Two-Column Information & Recommendations Layout -->
+      <div class="player-details-grid">
+
+        <!-- Left Column: Instructions & Information -->
+        <div class="game-info-column">
+          
+          <!-- Controls Panel -->
+          <section class="info-card controls-card">
+            <div class="card-section-title">
+              <span class="icon">🎮</span> How to Play & Controls
+            </div>
+            <div class="controls-list" id="controlsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </section>
+
+          <!-- About Game Description -->
+          <section class="info-card about-card">
+            <div class="card-section-title">
+              <span class="icon">📖</span> About the Game
+            </div>
+            <p class="about-description" id="aboutDescription">
+              Detailed game overview...
+            </p>
+            
+            <div class="game-meta-pills">
+              <div class="meta-pill">
+                <span class="pill-label">Category:</span>
+                <span class="pill-value" id="metaCategoryText">3D Runners</span>
+              </div>
+              <div class="meta-pill">
+                <span class="pill-label">Platform:</span>
+                <span class="pill-value">Web Browser (HTML5)</span>
+              </div>
+              <div class="meta-pill">
+                <span class="pill-label">Release:</span>
+                <span class="pill-value" id="metaReleaseText">2024</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right Column: Similar / Recommended Games -->
+        <aside class="game-sidebar-column">
+          <div class="sidebar-header">
+            <h3 class="sidebar-title">Similar Games</h3>
+            <span class="sidebar-tag">More Fun</span>
+          </div>
+
+          <div class="related-games-list" id="relatedGamesList">
+            <!-- Rendered dynamically -->
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Share Toast Alert -->
+  <div class="toast-alert" id="toastAlert">Link copied to clipboard!</div>
+
+  <!-- Shared Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p class="footer-description">
+          Play unblocked games online at <strong class="highlight-white">IceDodoGames</strong>, the best place to play free browser games without downloading.
+        </p>
+        <p class="footer-copyright">
+          Copyright 2025 - <span class="highlight-cyan">IceDodoGames</span>. All rights reserved.
+        </p>
+      </div>
+      <div class="footer-right">
+        <p class="footer-disclaimer">
+          All games hosted on this website are provided for entertainment and educational purposes only. We do not claim ownership of any third-party content.
+        </p>
+        <div class="footer-meta-links">
+          <a href="index.html">All Games</a> &bull;
+          <a href="#">Privacy Policy</a> &bull;
+          <a href="#">DMCA Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="games-data.js"></script>
+  <script src="play.js"></script>
+</body>
+</html>

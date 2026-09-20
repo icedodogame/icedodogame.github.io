@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D & Speed Games - Ice Dodo Games</title>
+  <meta name="description" content="Play the best 3D runner and high speed games online at Ice Dodo Games. Enjoy Ice Dodo, Slope, Run 3, Crazy Cattle 3D, and more free in browser.">
+  <meta name="keywords" content="3d runners, speed games, ice dodo, slope, run 3, unblocked games">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230b1329'/><path d='M30 45 C30 25, 70 25, 70 45 C70 65, 55 75, 40 75 C30 75, 30 55, 30 45 Z' fill='%2300f2fe'/><ellipse cx='42' cy='42' rx='5' ry='6' fill='%23081026'/><ellipse cx='43' cy='40' rx='2' ry='2' fill='%23ffffff'/><polygon points='45,45 68,52 48,58' fill='%23ff9900'/><polygon points='22,48 35,40 33,56' fill='%2338ef7d'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body data-base-path="../../" data-page-category="runners">
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar" id="topNavbar">
+    <div class="nav-container">
+      
+      <!-- Brand / Logo -->
+      <a href="../../index.html" class="brand-logo" id="homeLogoBtn">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="26" fill="url(#logo-grad)"/>
+            <path d="M28 48C28 30 68 28 72 46C74 56 64 74 46 74C32 74 28 62 28 48Z" fill="#E0F7FF"/>
+            <circle cx="60" cy="42" r="5" fill="#0F172A"/>
+            <circle cx="61.5" cy="40.5" r="1.5" fill="#FFFFFF"/>
+            <path d="M68 46L86 52L68 59Z" fill="#FF9E00"/>
+            <path d="M38 28L44 14L50 26L58 12L62 27" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="22" cy="30" r="2.5" fill="#7DD3FC"/>
+            <circle cx="78" cy="70" r="3" fill="#38BDF8"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0284C7"/>
+                <stop offset="1" stop-color="#0369A1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="logo-frost-glow"></div>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">IceDodo<span class="brand-highlight">Games</span></span>
+        </div>
+      </a>
+
+      <!-- Center Nav Links -->
+      <nav class="nav-links" id="mainNav">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../category/" class="nav-link active">Categories</a>
+        <a href="../../play.html?id=ice-dodo" class="nav-link" id="navIceDodoBtn">Ice Dodo ❄️</a>
+        <a href="../hot/" class="nav-link" id="navTrendingBtn">Popular</a>
+        <a href="#footer" class="nav-link">Contact</a>
+        <a href="#footer" class="nav-link">Privacy</a>
+      </nav>
+
+      <!-- Right Actions: Search Bar & Favorite Filter -->
+      <div class="nav-right">
+        <div class="search-container">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search games..." autocomplete="off" spellcheck="false">
+          <button class="clear-search-btn" id="clearSearchBtn" title="Clear search" aria-label="Clear search">&times;</button>
+          <span class="search-kbd-hint">/</span>
+        </div>
+
+        <button class="fav-filter-btn" id="favoritesToggleBtn" title="View Favorite Games" aria-label="Favorites">
+          <svg class="fav-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="fav-count" id="favCountBadge">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Category Filter Bar -->
+  <section class="categories-bar" id="categories">
+    <div class="categories-container">
+      <div class="category-pills" id="categoryPills">
+        <a href="../../index.html" class="pill" data-category="all">
+          <span class="pill-icon">🎮</span> All Games
+        </a>
+        <a href="../runners/" class="pill active" data-category="runners">
+          <span class="pill-icon">⚡</span> 3D & Speed
+        </a>
+        <a href="../skill/" class="pill" data-category="skill">
+          <span class="pill-icon">🎯</span> Skill & Hard
+        </a>
+        <a href="../arcade/" class="pill" data-category="arcade">
+          <span class="pill-icon">🕹️</span> Arcade Classics
+        </a>
+        <a href="../action/" class="pill" data-category="action">
+          <span class="pill-icon">💥</span> Action & 2-Player
+        </a>
+        <a href="../hot/" class="pill" data-category="hot">
+          <span class="pill-icon">🔥</span> Trending Hot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Game Showcase Container -->
+  <main class="main-content">
+    <div class="content-container">
+
+      <!-- Section Title Bar with Counter -->
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h1 class="section-title" id="gamesSectionTitle">3D & Speed Games</h1>
+          <span class="game-counter" id="gameCounter">Games</span>
+        </div>
+        <div class="section-view-filter">
+          <span class="status-indicator"></span> Fast & Free in Browser
+        </div>
+      </div>
+
+      <!-- Games Grid -->
+      <div class="games-grid" id="gamesGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Empty Search State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-state-icon">❄️</div>
+        <h3>No games found</h3>
+        <p>Try searching for different keywords or browse all available games.</p>
+        <button class="btn-reset-filter" id="resetSearchBtn">Show All Games</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p class="footer-description">
+          Play unblocked games online at <strong class="highlight-white">IceDodoGames</strong>, the best place to play free browser games without downloading.
+        </p>
+        <p class="footer-copyright">
+          Copyright 2025 - <span class="highlight-cyan">IceDodoGames</span>. All rights reserved.
+        </p>
+      </div>
+      <div class="footer-right">
+        <p class="footer-disclaimer">
+          All games hosted on this website are provided for entertainment and educational purposes only. We do not claim ownership of any third-party content.
+        </p>
+        <div class="footer-meta-links">
+          <a href="../../index.html">All Games</a> &bull;
+          <a href="../../category/">Categories</a> &bull;
+          <a href="#">Privacy Policy</a> &bull;
+          <a href="#">DMCA Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../games-data.js"></script>
+  <script src="../../app.js"></script>
+</body>
+</html>
