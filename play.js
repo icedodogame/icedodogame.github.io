@@ -22,7 +22,79 @@ document.addEventListener("DOMContentLoaded", () => {
  * Updates title, meta tags, and breadcrumbs
  */
 function initPageMeta(game) {
-  document.getElementById("pageTitle").textContent = `${game.title} - Play Online | Ice Dodo Games`;
+  const fullTitle = `${game.title} - Play Online | Ice Dodo Games`;
+  const currentUrl = window.location.href;
+
+  document.getElementById("pageTitle").textContent = fullTitle;
+
+  // Dynamic SEO Description & Canonical
+  const metaDesc = document.getElementById("metaDescription");
+  if (metaDesc) metaDesc.setAttribute("content", game.desc);
+  const canonical = document.getElementById("canonicalLink");
+  if (canonical) canonical.setAttribute("href", currentUrl);
+
+  // Dynamic Open Graph & Twitter Cards for Google / Social Image Previews
+  const ogTitle = document.getElementById("ogTitle");
+  if (ogTitle) ogTitle.setAttribute("content", fullTitle);
+  const ogDesc = document.getElementById("ogDesc");
+  if (ogDesc) ogDesc.setAttribute("content", game.desc);
+  const ogUrl = document.getElementById("ogUrl");
+  if (ogUrl) ogUrl.setAttribute("content", currentUrl);
+
+  // ACTUAL GAME IMAGE FOR GOOGLE & SOCIAL
+  const ogImg = document.getElementById("ogImage");
+  if (ogImg) ogImg.setAttribute("content", game.thumb);
+  const ogImgSec = document.getElementById("ogImageSecure");
+  if (ogImgSec) ogImgSec.setAttribute("content", game.thumb);
+  const ogImgAlt = document.getElementById("ogImageAlt");
+  if (ogImgAlt) ogImgAlt.setAttribute("content", `${game.title} Thumbnail`);
+
+  const twTitle = document.getElementById("twTitle");
+  if (twTitle) twTitle.setAttribute("content", fullTitle);
+  const twDesc = document.getElementById("twDesc");
+  if (twDesc) twDesc.setAttribute("content", game.desc);
+  const twImg = document.getElementById("twImage");
+  if (twImg) twImg.setAttribute("content", game.thumb);
+
+  const linkImg = document.getElementById("linkImageSrc");
+  if (linkImg) linkImg.setAttribute("href", game.thumb);
+
+  // Google Search Structured Data (JSON-LD VideoGame Schema)
+  let schemaScript = document.getElementById("gameSchema");
+  if (!schemaScript) {
+    schemaScript = document.createElement("script");
+    schemaScript.id = "gameSchema";
+    schemaScript.type = "application/ld+json";
+    document.head.appendChild(schemaScript);
+  }
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": game.title,
+    "description": game.desc,
+    "image": [game.thumb],
+    "screenshot": [game.thumb],
+    "url": currentUrl,
+    "genre": [game.category],
+    "gamePlatform": ["Web Browser", "HTML5"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Web Browser",
+    "inLanguage": "en",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": game.rating || "4.8",
+      "ratingCount": "1250",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  });
+
   document.getElementById("crumbCategory").textContent = game.category.toUpperCase();
   const categoryLink = document.getElementById("crumbCategoryLink");
   if (categoryLink) {
