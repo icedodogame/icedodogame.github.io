@@ -1011,3 +1011,84 @@ body {
     align-items: flex-start;
   }
 }
+
+/* ==========================================================================
+   Floating Scroll Controls (Scroll Up / Down Widget)
+   ========================================================================== */
+.scroll-controls {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.scroll-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 20, 31, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--text-main, #f8fafc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+  outline: none;
+  user-select: none;
+  opacity: 0.88;
+}
+
+.scroll-btn svg {
+  display: block;
+  stroke: var(--text-main, #f8fafc);
+  transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+.scroll-btn:hover {
+  opacity: 1;
+  background: rgba(24, 32, 48, 0.95);
+  border-color: var(--accent-cyan, #00e5ff);
+  box-shadow: 0 6px 20px rgba(0, 229, 255, 0.35), 0 0 14px var(--accent-cyan-glow, rgba(0, 229, 255, 0.3));
+  transform: translateY(-2px);
+}
+
+.scroll-btn:hover svg {
+  stroke: var(--accent-cyan, #00e5ff);
+}
+
+.scroll-btn:active {
+  transform: translateY(1px) scale(0.94);
+}
+
+.scroll-btn-up:hover svg {
+  transform: translateY(-2px);
+}
+
+.scroll-btn-down:hover svg {
+  transform: translateY(2px);
+}
+
+@media (max-width: 640px) {
+  .scroll-controls {
+    bottom: 16px;
+    right: 16px;
+    gap: 6px;
+  }
+  .scroll-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .scroll-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+

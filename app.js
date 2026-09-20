@@ -191,7 +191,16 @@ class HomePageManager {
   }
 
   getFilteredGames() {
+    const seen = new Set();
     return this.games.filter(game => {
+      const idKey = (game.id || "").toLowerCase().trim();
+      if (idKey && seen.has(idKey)) {
+        return false;
+      }
+      if (idKey) {
+        seen.add(idKey);
+      }
+
       if (this.showOnlyFavorites && !this.favorites.includes(game.id)) {
         return false;
       }
@@ -201,7 +210,7 @@ class HomePageManager {
           if (game.badge !== "HOT" && game.badge !== "FEATURED" && parseFloat(game.rating) < 4.9) {
             return false;
           }
-        } else if (game.category !== this.currentCategory) {
+        } else if (game.category.toLowerCase() !== this.currentCategory.toLowerCase()) {
           return false;
         }
       }

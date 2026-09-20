@@ -94,7 +94,7 @@
       <nav class="player-breadcrumbs">
         <a href="index.html">Home</a>
         <span class="crumb-sep">/</span>
-        <a href="category/runners/" id="crumbCategoryLink"><span id="crumbCategory">3D Runners</span></a>
+        <a href="category/Carspeed/" id="crumbCategoryLink"><span id="crumbCategory">Car Speed</span></a>
         <span class="crumb-sep">/</span>
         <span id="crumbGameTitle" class="current">Ice Dodo</span>
       </nav>
@@ -197,7 +197,7 @@
             <div class="game-meta-pills">
               <div class="meta-pill">
                 <span class="pill-label">Category:</span>
-                <span class="pill-value" id="metaCategoryText">3D Runners</span>
+                <span class="pill-value" id="metaCategoryText">Car Speed</span>
               </div>
               <div class="meta-pill">
                 <span class="pill-label">Platform:</span>
@@ -255,6 +255,20 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scroll To Top / Bottom Buttons -->
+  <div class="scroll-controls" id="scrollControls" aria-label="Scroll navigation">
+    <button class="scroll-btn scroll-btn-up" id="scrollUpBtn" title="Scroll to top" aria-label="Scroll to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+    <button class="scroll-btn scroll-btn-down" id="scrollDownBtn" title="Scroll to bottom" aria-label="Scroll to bottom" onclick="window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'})">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </div>
 
   <script src="games-data.js"></script>
   <script src="play.js"></script>

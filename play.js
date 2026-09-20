@@ -87,13 +87,56 @@ function initControlsGuide(game) {
 
 /**
  * Renders Similar / Recommended Games in Sidebar
+ * Must be of the same category as the current game, and must not duplicate each other or the current game.
  */
 function initRelatedGames(currentGame) {
   const relatedList = document.getElementById("relatedGamesList");
-  // Get other games, prioritize same category or popular ones
-  const otherGames = GAMES_DATA.filter(g => g.id !== currentGame.id);
+  if (!relatedList || !currentGame) return;
 
-  relatedList.innerHTML = otherGames.slice(0, 6).map(g => `
+  const currentId = (currentGame.id || "").toLowerCase().trim();
+  const currentTitle = (currentGame.title || "").toLowerCase().trim();
+  const currentCategory = (currentGame.category || "").toLowerCase().trim();
+
+  // Sets to guarantee no duplicate IDs or titles
+  const seenIds = new Set([currentId]);
+  const seenTitles = new Set([currentTitle]);
+
+  // 1. Gather all unique games from the EXACT same category
+  const sameCategoryGames = [];
+  for (const g of GAMES_DATA) {
+    if (!g || !g.id) continue;
+    const gid = g.id.toLowerCase().trim();
+    const gtitle = (g.title || "").toLowerCase().trim();
+    const gcat = (g.category || "").toLowerCase().trim();
+
+    if (gcat === currentCategory && !seenIds.has(gid) && !seenTitles.has(gtitle)) {
+      seenIds.add(gid);
+      seenTitles.add(gtitle);
+      sameCategoryGames.push(g);
+    }
+  }
+
+  // Shuffle same-category games to provide a fresh, dynamic discovery experience
+  const shuffledSameCategory = [...sameCategoryGames].sort(() => 0.5 - Math.random());
+  let selectedGames = shuffledSameCategory.slice(0, 6);
+
+  // Fallback only if there are 0 other games in the same category
+  if (selectedGames.length === 0) {
+    for (const g of GAMES_DATA) {
+      if (!g || !g.id) continue;
+      const gid = g.id.toLowerCase().trim();
+      const gtitle = (g.title || "").toLowerCase().trim();
+
+      if (!seenIds.has(gid) && !seenTitles.has(gtitle)) {
+        seenIds.add(gid);
+        seenTitles.add(gtitle);
+        selectedGames.push(g);
+        if (selectedGames.length >= 6) break;
+      }
+    }
+  }
+
+  relatedList.innerHTML = selectedGames.map(g => `
     <a href="play.html?id=${g.id}" class="related-game-item" title="Play ${g.title}">
       <div class="related-thumb-wrap">
         <img src="${g.thumb}" alt="${g.title}" class="related-thumb-img" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 65%22><rect width=%22100%22 height=%2265%22 fill=%22%230f172a%22/><text x=%2250%22 y=%2240%22 fill=%22%2300e5ff%22 font-size=%2222%22 text-anchor=%22middle%22>🎮</text></svg>';">
