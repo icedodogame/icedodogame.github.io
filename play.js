@@ -192,9 +192,10 @@ function initRelatedGames(currentGame) {
   const shuffledSameCategory = [...sameCategoryGames].sort(() => 0.5 - Math.random());
   let selectedGames = shuffledSameCategory.slice(0, 6);
 
-  // Fallback only if there are 0 other games in the same category
-  if (selectedGames.length === 0) {
-    for (const g of GAMES_DATA) {
+  // Fill up to 6 games if there are fewer than 6 in the same category
+  if (selectedGames.length < 6) {
+    const fallbackPool = [...GAMES_DATA].sort(() => 0.5 - Math.random());
+    for (const g of fallbackPool) {
       if (!g || !g.id) continue;
       const gid = g.id.toLowerCase().trim();
       const gtitle = (g.title || "").toLowerCase().trim();

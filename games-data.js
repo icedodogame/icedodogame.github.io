@@ -1,27 +1,26 @@
-﻿const GAMES_DATA = [
+const GAMES_DATA = [
   {
-    id: "burnin-rubber-5-xs",
-    title: "Burnin Rubber 5 XS",
+    id: "ice-dodo",
+    altId: "icedodo",
+    title: "Ice Dodo ❄️",
     // 👇 PASTE GAME THUMBNAIL URL HERE 👇
-    thumb: "https://slice-master.github.io/gameslicemaster/burnin-rubber-5-xs/logo.png",
+    thumb: "https://icedodogame.github.io/filegame-icedodo/icedodo/logo.png",
     // 👇 PASTE PLAYABLE GAME URL HERE 👇
-    embedUrl: "https://slice-master.github.io/gameslicemaster/burnin-rubber-5-xs/",
-    category: "Carspeed",
-    badge: "FEATURED",
-    badgeType: "badge-featured",
+    embedUrl: "https://icedodogame.github.io/filegame-icedodo/icedodo/",
+    category: "HOT",
+    badge: "HOT",
+    badgeType: "badge-hot",
     rating: "4.9",
-    plays: "3.2M",
+    plays: "4.8M",
     releaseYear: "2024",
     developer: "Onionfist",
     controls: [
-      { key: "W / Up Arrow or Z", desc: "Accelerate" },
-      { key: "S / Down Arrow", desc: "Brake / Reverse" },
-      { key: "A / D or Left / Right", desc: "Steer Vehicle" },
-      { key: "X / Spacebar", desc: "Fire Primary Weapon" },
-      { key: "Z / Shift", desc: "Fire Secondary Weapon" },
-      { key: "R", desc: "Reset Vehicle" }
+      { key: "A / D or Left / Right", desc: "Steer Dodo Left / Right" },
+      { key: "Spacebar or W / Up Arrow", desc: "Jump Across Gaps & Spikes" },
+      { key: "R", desc: "Quick Restart Level" },
+      { key: "P or Esc", desc: "Pause Game" }
     ],
-    desc: "Burnin Rubber 5 XS is an explosive 3D vehicular combat racing game. Arm your battle car with machine guns and missile launchers, drift through deadly obstacle circuits, and destroy rival cars in free unblocked high-speed racing action."
+    desc: "Ice Dodo is a thrilling, ultra-fast 3D runner and reflex platformer game created by Onionfist. Control a futuristic Dodo sliding at high velocity across narrow icy platforms suspended in the sky. Master sharp turns, dodge razor cones and moving hazards, jump across vast chasms, adapt to inverted controls, and hit the green finish line in one piece!"
   },
   {
     id: "boat-drift",
@@ -1186,6 +1185,11 @@
 // Helper to look up game by ID
 function findGameById(id) {
   if (!id) return GAMES_DATA[0];
-  const found = GAMES_DATA.find(g => g.id.toLowerCase() === id.toLowerCase());
+  const query = id.toLowerCase().replace(/[-_\s]/g, "");
+  const found = GAMES_DATA.find(g => {
+    const gid = (g.id || "").toLowerCase().replace(/[-_\s]/g, "");
+    const galt = (g.altId || "").toLowerCase().replace(/[-_\s]/g, "");
+    return gid === query || galt === query;
+  });
   return found || GAMES_DATA[0];
 }
